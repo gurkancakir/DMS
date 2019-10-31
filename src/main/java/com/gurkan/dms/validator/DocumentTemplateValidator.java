@@ -10,7 +10,9 @@ import com.gurkan.dms.service.DocumentTemplateService;
 import com.gurkan.dms.service.DocumentTypeService;
 import com.gurkan.dms.service.MetadataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DocumentTemplateValidator implements IValidator<DocumentTemplateDto> {
 
     @Autowired

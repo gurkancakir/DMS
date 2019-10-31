@@ -23,11 +23,13 @@ public class DocumentController {
     @Autowired
     DocumentService documentService;
 
+    @Autowired
+    DocumentValidator validator;
+
 
     @PostMapping("/add")
     public ResponseEntity add(@RequestBody DocumentDto documentDto) throws ValidatorException {
-        DocumentValidator validator = new DocumentValidator();
-        //validator.validate(documentDto); // TODO: autowired null pointer fix !!
+        validator.validate(documentDto);
         DocumentTemplate documentTemplate = documentTemplateService.findByDocumentTypeType(documentDto.getDocumentType());
         DocumentTemplateConverter converter = new DocumentTemplateConverter();
         Document document = converter.convert(documentTemplate);

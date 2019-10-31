@@ -27,11 +27,12 @@ public class DocumentTemplateController {
     @Autowired
     MetadataService metadataService;
 
+    @Autowired
+    DocumentTemplateValidator validator;
 
     @PostMapping("/add")
     public ResponseEntity add(@RequestBody DocumentTemplateDto documentTemplateDto) throws ValidatorException {
-        DocumentTemplateValidator validator = new DocumentTemplateValidator();
-        //validator.validate(documentTemplateDto); // TODO: autowired null pointer fix !!
+        validator.validate(documentTemplateDto);
         DocumentType documentType = documentTypeService.findByType(documentTemplateDto.getDocumentType());
         DocumentTemplate documentTemplate = new DocumentTemplate();
         documentTemplate.setDocumentType(documentType);
