@@ -32,16 +32,16 @@ public class DocumentTemplateValidator implements IValidator<DocumentTemplateDto
     }
 
     private void validateDocumentTemplate(DocumentTemplateDto documentTemplateDto) throws ValidatorException {
-        DocumentTemplate documentTemplate = documentTemplateService.findByDocumentTypeType(documentTemplateDto.getDocumentType());
+        DocumentTemplate documentTemplate = documentTemplateService.findByDocumentTypeType(documentTemplateDto.getType());
         if (documentTemplate != null) {
-            throw new ValidatorException(documentTemplateDto.getDocumentType() + " Tipinde döküman şablonu bulunmaktadır.");
+            throw new ValidatorException(documentTemplateDto.getType() + " Tipinde döküman şablonu bulunmaktadır.");
         }
     }
 
     private void validateDocumentType(DocumentTemplateDto documentTemplateDto) throws ValidatorException {
-        DocumentType documentType = documentTypeService.findByType(documentTemplateDto.getDocumentType());
+        DocumentType documentType = documentTypeService.findByType(documentTemplateDto.getType());
         if (documentType == null) {
-            throw new ValidatorException(documentTemplateDto.getDocumentType() + " Döküman tipi sistemde bulunmamaktadır." +
+            throw new ValidatorException(documentTemplateDto.getType() + " Döküman tipi sistemde bulunmamaktadır." +
                     " Öncelikle döküman tipi tanımı yapınız");
         }
     }

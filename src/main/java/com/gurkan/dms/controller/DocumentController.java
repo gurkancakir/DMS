@@ -1,17 +1,21 @@
 package com.gurkan.dms.controller;
 
+import com.github.dozermapper.core.Mapper;
 import com.gurkan.dms.bean.Document;
 import com.gurkan.dms.bean.DocumentTemplate;
 import com.gurkan.dms.bean.Metadata;
-import com.gurkan.dms.converter.DocumentTemplateConverter;
 import com.gurkan.dms.dto.DocumentDto;
 import com.gurkan.dms.exception.ValidatorException;
 import com.gurkan.dms.service.DocumentService;
 import com.gurkan.dms.service.DocumentTemplateService;
+import com.gurkan.dms.service.MetadataService;
 import com.gurkan.dms.validator.DocumentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("document")
@@ -24,15 +28,23 @@ public class DocumentController {
     DocumentService documentService;
 
     @Autowired
+    MetadataService metadataService;
+
+    @Autowired
     DocumentValidator validator;
+
+    @Autowired
+    Mapper dozerMapper;
 
 
     @PostMapping("/add")
     public ResponseEntity add(@RequestBody DocumentDto documentDto) throws ValidatorException {
         validator.validate(documentDto);
         DocumentTemplate documentTemplate = documentTemplateService.findByDocumentTypeType(documentDto.getDocumentType());
-        DocumentTemplateConverter converter = new DocumentTemplateConverter();
-        Document document = converter.convert(documentTemplate);
+        Document document = dozerMapper.map(documentTemplate, Document.class);
+        document.setName(UUID.randomUUID().toString());
+        document.setCreateDate(new Date());
+        document.setCreateTime(new Date());
         document.setContent(documentDto.getContent());
         document.setMimeType(documentDto.getMimeType());
         document.setAuthorName(documentDto.getAuthorName());
@@ -41,7 +53,10 @@ public class DocumentController {
             document.getMetadatas().stream()
                     .filter(e -> e.getName().equals(metadata.getName()))
                     .findFirst()
-                    .ifPresent(e -> e.setValue(metadata.getValue()));
+                    .ifPresent(e -> {
+                        e.setId(metadataService.findByName(metadata.getName()).getId());
+                        e.setValue(metadata.getValue());
+                    });
         }
         document = documentService.add(document);
         return ResponseEntity.ok(document);
@@ -55,5 +70,10 @@ public class DocumentController {
     @GetMapping("/get/{name}/{value}")
     public ResponseEntity get(@PathVariable("name") String name, @PathVariable("value") String value) {
         return ResponseEntity.ok(documentService.findByMetadatasNameAndMetadatasValue(name, value));
+    }
+
+    @GetMapping("/list/{documentType}")
+    public ResponseEntity list(@PathVariable("documentType") String documentType) {
+        return ResponseEntity.ok(documentService.findByDocumentTypeType(documentType));
     }
 }

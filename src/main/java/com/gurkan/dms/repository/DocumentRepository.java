@@ -10,4 +10,5 @@ import java.util.List;
 public interface DocumentRepository extends MongoRepository<Document, String> {
 
     List<Document> findByMetadatasNameAndMetadatasValue(String name, String value);
+    List<Document> findByDocumentTypeType(String documentType);
 }

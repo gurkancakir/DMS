@@ -28,7 +28,7 @@ public class Document {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "type_id", nullable = false)
-    private DocumentType type;
+    private DocumentType documentType;
 
     /*@ManyToMany(fetch = FetchType.LAZY,
             cascade = {

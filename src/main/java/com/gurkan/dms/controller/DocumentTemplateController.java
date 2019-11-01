@@ -1,5 +1,6 @@
 package com.gurkan.dms.controller;
 
+import com.github.dozermapper.core.Mapper;
 import com.gurkan.dms.bean.DocumentTemplate;
 import com.gurkan.dms.bean.DocumentType;
 import com.gurkan.dms.bean.Metadata;
@@ -30,19 +31,21 @@ public class DocumentTemplateController {
     @Autowired
     DocumentTemplateValidator validator;
 
+    @Autowired
+    Mapper dozerMapper;
+
     @PostMapping("/add")
     public ResponseEntity add(@RequestBody DocumentTemplateDto documentTemplateDto) throws ValidatorException {
         validator.validate(documentTemplateDto);
-        DocumentType documentType = documentTypeService.findByType(documentTemplateDto.getDocumentType());
-        DocumentTemplate documentTemplate = new DocumentTemplate();
+        DocumentType documentType = documentTypeService.findByType(documentTemplateDto.getType());
+        DocumentTemplate documentTemplate = dozerMapper.map(documentTemplateDto, DocumentTemplate.class);
         documentTemplate.setDocumentType(documentType);
         for (Metadata metadata : documentTemplateDto.getMetadatas()) {
             documentTemplate.getMetadatas().stream()
-                    .filter(e -> e.getName().equals(metadata.getName()))//TODO : id db ye eklemiyor fix !!
+                    .filter(e -> e.getName().equals(metadata.getName()))
                     .findFirst()
                     .ifPresent(e -> e.setId(metadataService.findByName(metadata.getName()).getId()));
         }
-        documentTemplate.setMetadatas(documentTemplateDto.getMetadatas());
         documentTemplate = documentTemplateService.add(documentTemplate);
         return ResponseEntity.ok(documentTemplate);
     }

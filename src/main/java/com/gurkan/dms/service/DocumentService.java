@@ -24,4 +24,8 @@ public class DocumentService {
     public List<Document> findByMetadatasNameAndMetadatasValue(String name, String value) {
         return documentRepository.findByMetadatasNameAndMetadatasValue(name, value);
     }
+
+    public List<Document> findByDocumentTypeType(String documentType) {
+        return documentRepository.findByDocumentTypeType(documentType);
+    }
 }

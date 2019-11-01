@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class DocumentTemplateDto {
 
-    private String documentType;
+    private String type;
     private List<Metadata> metadatas;
 }

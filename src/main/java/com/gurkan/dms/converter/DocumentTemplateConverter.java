@@ -7,12 +7,13 @@ import com.gurkan.dms.interfaces.IConverter;
 import java.util.Date;
 import java.util.UUID;
 
+@Deprecated
 public class DocumentTemplateConverter implements IConverter<DocumentTemplate, Document> {
 
     @Override
     public Document convert(DocumentTemplate obj) {
         Document document = new Document();
-        document.setType(obj.getDocumentType());
+        document.setDocumentType(obj.getDocumentType());
         document.setMetadatas(obj.getMetadatas());
         document.setName(UUID.randomUUID().toString());
         document.setCreateDate(new Date());
