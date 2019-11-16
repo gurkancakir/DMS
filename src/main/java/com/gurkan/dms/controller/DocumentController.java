@@ -10,6 +10,8 @@ import com.gurkan.dms.service.DocumentService;
 import com.gurkan.dms.service.DocumentTemplateService;
 import com.gurkan.dms.service.MetadataService;
 import com.gurkan.dms.validator.DocumentValidator;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,8 @@ import java.util.Date;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("document")
+@RequestMapping("api/v1/document")
+@Api(value = "document")
 public class DocumentController {
 
     @Autowired
@@ -38,6 +41,7 @@ public class DocumentController {
 
 
     @PostMapping("/add")
+    @ApiOperation(value = "Add Document", notes = "Adding a document")
     public ResponseEntity add(@RequestBody DocumentDto documentDto) throws ValidatorException {
         validator.validate(documentDto);
         DocumentTemplate documentTemplate = documentTemplateService.findByDocumentTypeType(documentDto.getDocumentType());
@@ -63,16 +67,19 @@ public class DocumentController {
     }
 
     @GetMapping("/list")
+    @ApiOperation(value = "List Document", notes = "List all documents")
     public ResponseEntity list() {
         return ResponseEntity.ok(documentService.list());
     }
 
     @GetMapping("/get/{name}/{value}")
+    @ApiOperation(value = "Find Document", notes = "Find document using metadata name and value")
     public ResponseEntity get(@PathVariable("name") String name, @PathVariable("value") String value) {
         return ResponseEntity.ok(documentService.findByMetadatasNameAndMetadatasValue(name, value));
     }
 
     @GetMapping("/list/{documentType}")
+    @ApiOperation(value = "List Document", notes = "List document using document type")
     public ResponseEntity list(@PathVariable("documentType") String documentType) {
         return ResponseEntity.ok(documentService.findByDocumentTypeType(documentType));
     }

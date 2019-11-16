@@ -1,4 +1,4 @@
-package com.gurkan.dms;
+package com.gurkan.dms.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

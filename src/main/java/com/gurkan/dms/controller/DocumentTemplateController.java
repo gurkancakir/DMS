@@ -10,13 +10,16 @@ import com.gurkan.dms.service.DocumentTemplateService;
 import com.gurkan.dms.service.DocumentTypeService;
 import com.gurkan.dms.service.MetadataService;
 import com.gurkan.dms.validator.DocumentTemplateValidator;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("document-template")
+@RequestMapping("api/v1/document-template")
+@Api(value = "document-template")
 public class DocumentTemplateController {
 
     @Autowired
@@ -35,6 +38,7 @@ public class DocumentTemplateController {
     Mapper dozerMapper;
 
     @PostMapping("/add")
+    @ApiOperation(value = "Add Document Template", notes = "Adding a document template")
     public ResponseEntity add(@RequestBody DocumentTemplateDto documentTemplateDto) throws ValidatorException {
         validator.validate(documentTemplateDto);
         DocumentType documentType = documentTypeService.findByType(documentTemplateDto.getType());
@@ -51,6 +55,7 @@ public class DocumentTemplateController {
     }
 
     @GetMapping("/list")
+    @ApiOperation(value = "List Document Template", notes = "List all document templates")
     public ResponseEntity list() {
         return ResponseEntity.ok(documentTemplateService.list());
     }

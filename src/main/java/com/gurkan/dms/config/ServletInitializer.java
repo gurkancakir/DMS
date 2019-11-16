@@ -1,5 +1,6 @@
-package com.gurkan.dms;
+package com.gurkan.dms.config;
 
+import com.gurkan.dms.DmsApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
