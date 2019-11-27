@@ -5,8 +5,7 @@ import java.lang.annotation.Annotation;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.ParameterNameDiscoverer;
@@ -15,16 +14,15 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
+@Slf4j
 public class LoggingHandlerMethodInterceptor extends HandlerInterceptorAdapter {
-    private static Logger logger = LoggerFactory.getLogger(LoggingHandlerMethodInterceptor.class);
-
     private final ParameterNameDiscoverer parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
         if (handler instanceof HandlerMethod) {
-            logger.info(getControllerNameAndMethodName((HandlerMethod) handler));
+            log.info(getControllerNameAndMethodName((HandlerMethod) handler));
         }
 
         return true;
