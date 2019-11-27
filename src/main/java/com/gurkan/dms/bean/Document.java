@@ -14,6 +14,7 @@ public class Document {
 
     @Id
     private String id;
+    private String status;
     private String name;
 
     @JsonFormat(pattern="yyyyMMdd", timezone = "Europe/Istanbul")
