@@ -12,6 +12,7 @@ public class DocumentType {
 
     @Id
     private String id;
+    private String status;
     private String type;
 
   /*  @ManyToMany(fetch = FetchType.EAGER,

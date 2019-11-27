@@ -10,6 +10,7 @@ public class Metadata {
 
     @Id
     private String id;
+    private String status;
     private String name;
     private String value;
 }

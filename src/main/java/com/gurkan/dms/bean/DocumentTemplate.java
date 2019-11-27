@@ -16,6 +16,7 @@ public class DocumentTemplate {
 
     @Id
     private String id;
+    private String status;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "type_id", nullable = false)
