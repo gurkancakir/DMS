@@ -4,7 +4,6 @@ import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.ArrayList;
@@ -12,11 +11,7 @@ import java.util.List;
 
 @Document(collection = "DOCUMENT_TEMPLATE")
 @Data
-public class DocumentTemplate {
-
-    @Id
-    private String id;
-    private String status;
+public class DocumentTemplate extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "type_id", nullable = false)
