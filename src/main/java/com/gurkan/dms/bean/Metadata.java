@@ -1,16 +1,12 @@
 package com.gurkan.dms.bean;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Id;
-
-@org.springframework.data.mongodb.core.mapping.Document(collection = "METADATA")
+@Document(collection = "METADATA")
 @Data
-public class Metadata {
+public class Metadata extends BaseEntity {
 
-    @Id
-    private String id;
-    private String status;
     private String name;
     private String value;
 }

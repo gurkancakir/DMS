@@ -1,27 +1,16 @@
 package com.gurkan.dms.bean;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @org.springframework.data.mongodb.core.mapping.Document(collection = "DOCUMENT")
 @Data
-public class Document {
+public class Document extends BaseEntity {
 
-    @Id
-    private String id;
-    private String status;
     private String name;
-
-    @JsonFormat(pattern="yyyyMMdd", timezone = "Europe/Istanbul")
-    private Date createDate;
-
-    @JsonFormat(pattern="HHmmss", timezone = "Europe/Istanbul")
-    private Date createTime;
 
     private String authorName;
     private String mimeType;
