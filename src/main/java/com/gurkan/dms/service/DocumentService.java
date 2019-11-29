@@ -2,6 +2,7 @@ package com.gurkan.dms.service;
 
 import com.gurkan.dms.bean.Document;
 import com.gurkan.dms.repository.DocumentRepository;
+import com.gurkan.dms.util.DMSUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class DocumentService {
     DocumentRepository documentRepository;
 
     public Document add(Document document) {
+        document.setCreateDate(DMSUtil.dateNow());
+        document.setCreateTime(DMSUtil.timeNow());
+        document.setInsertUser(DMSUtil.sessionUser());
         return documentRepository.save(document);
     }
 
