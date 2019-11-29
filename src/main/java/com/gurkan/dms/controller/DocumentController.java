@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.UUID;
 
 @RestController
@@ -47,8 +46,6 @@ public class DocumentController {
         DocumentTemplate documentTemplate = documentTemplateService.findByDocumentTypeType(documentDto.getDocumentType());
         Document document = dozerMapper.map(documentTemplate, Document.class);
         document.setName(UUID.randomUUID().toString());
-        document.setCreateDate(new Date());
-        document.setCreateTime(new Date());
         document.setContent(documentDto.getContent());
         document.setMimeType(documentDto.getMimeType());
         document.setAuthorName(documentDto.getAuthorName());

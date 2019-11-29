@@ -5,7 +5,8 @@ import lombok.Data;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @MappedSuperclass
@@ -16,18 +17,18 @@ public class BaseEntity {
     private String status;
 
     @JsonFormat(pattern="yyyyMMdd", timezone = "Europe/Istanbul")
-    private Date createDate;
+    private LocalDate createDate;
 
     @JsonFormat(pattern="HHmmss", timezone = "Europe/Istanbul")
-    private Date createTime;
+    private LocalTime createTime;
 
     private String insertUser;
 
     @JsonFormat(pattern="yyyyMMdd", timezone = "Europe/Istanbul")
-    private Date updateDate;
+    private LocalDate updateDate;
 
     @JsonFormat(pattern="HHmmss", timezone = "Europe/Istanbul")
-    private Date updateTime;
+    private LocalTime updateTime;
 
     private String updateUser;
 }
