@@ -21,6 +21,13 @@ public class MetadataService {
         return metadataRepository.save(metadata);
     }
 
+    public Metadata update(Metadata metadata) {
+        metadata.setUpdateDate(DMSUtil.dateNow());
+        metadata.setUpdateTime(DMSUtil.timeNow());
+        metadata.setUpdateUser(DMSUtil.sessionUser());
+        return metadataRepository.save(metadata);
+    }
+
     public List<Metadata> list() {
         return metadataRepository.findAll();
     }

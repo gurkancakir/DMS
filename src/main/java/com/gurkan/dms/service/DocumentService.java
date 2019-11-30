@@ -21,6 +21,13 @@ public class DocumentService {
         return documentRepository.save(document);
     }
 
+    public Document update(Document document) {
+        document.setUpdateDate(DMSUtil.dateNow());
+        document.setUpdateTime(DMSUtil.timeNow());
+        document.setUpdateUser(DMSUtil.sessionUser());
+        return documentRepository.save(document);
+    }
+
     public List<Document> list() {
         return documentRepository.findAll();
     }

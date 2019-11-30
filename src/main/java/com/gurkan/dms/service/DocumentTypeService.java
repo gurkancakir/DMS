@@ -21,6 +21,13 @@ public class DocumentTypeService {
         return documentTypeRepository.save(documentType);
     }
 
+    public DocumentType update(DocumentType documentType) {
+        documentType.setUpdateDate(DMSUtil.dateNow());
+        documentType.setUpdateTime(DMSUtil.timeNow());
+        documentType.setUpdateUser(DMSUtil.sessionUser());
+        return documentTypeRepository.save(documentType);
+    }
+
     public List<DocumentType> list() {
         return documentTypeRepository.findAll();
     }
