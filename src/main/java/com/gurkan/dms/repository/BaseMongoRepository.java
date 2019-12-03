@@ -6,5 +6,4 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface BaseMongoRepository<T, V> extends MongoRepository<T, V> {
 
-    <S extends T> S update(S input);
 }
