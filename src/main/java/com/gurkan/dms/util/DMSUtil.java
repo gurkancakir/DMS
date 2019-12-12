@@ -5,6 +5,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.Base64;
 
 public class DMSUtil {
+    private static final String DEFAULT_USER = "TEST";
+
+    private DMSUtil() {}
 
     /**
      * Sessiondaki kullanici bilgisini verir
@@ -52,7 +55,7 @@ public class DMSUtil {
      * @return String
      */
     public static String sessionUser() {
-        return "";//TODO:
+        return DEFAULT_USER;
     }
 
     /**
