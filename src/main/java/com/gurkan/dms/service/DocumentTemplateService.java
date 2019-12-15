@@ -21,6 +21,13 @@ public class DocumentTemplateService {
         return documentTemplateRepository.save(documentTemplate);
     }
 
+    public DocumentTemplate update(DocumentTemplate documentTemplate) {
+        documentTemplate.setUpdateDate(DMSUtil.dateNow());
+        documentTemplate.setUpdateTime(DMSUtil.timeNow());
+        documentTemplate.setUpdateUser(DMSUtil.sessionUser());
+        return documentTemplateRepository.save(documentTemplate);
+    }
+
     public List<DocumentTemplate> list() {
         return documentTemplateRepository.findAll();
     }
