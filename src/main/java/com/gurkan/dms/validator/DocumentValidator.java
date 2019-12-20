@@ -36,7 +36,7 @@ public class DocumentValidator implements IValidator<DocumentDto> {
 
     private void validateMetadata(DocumentDto documentDto) throws ValidatorException {
         Metadata metadataDb;
-        for(Metadata metadata : documentDto.getMetadatas()) {
+        for (Metadata metadata : documentDto.getMetadatas()) {
             metadataDb = metadataService.findByName(metadata.getName());
             if (metadataDb == null) {
                 throw new ValidatorException(metadata.getName() + " İsimli metadata sistemde bulunmamaktadır. " +

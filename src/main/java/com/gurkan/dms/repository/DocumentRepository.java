@@ -9,5 +9,6 @@ import java.util.List;
 public interface DocumentRepository extends BaseMongoRepository<Document, String> {
 
     List<Document> findByMetadatasNameAndMetadatasValue(String name, String value);
+
     List<Document> findByDocumentTypeType(String documentType);
 }

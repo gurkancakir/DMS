@@ -13,25 +13,25 @@ import org.springframework.stereotype.Component;
 public class AspectConfig {
 
     @Before("execution(* com.gurkan.dms.service.DocumentService.add(..))")
-    public void before (JoinPoint joinPoint) {
+    public void before(JoinPoint joinPoint) {
         Document document = (Document) joinPoint.getArgs()[0];
         log.info("aspect::before : " + document.getContent());
     }
 
     @After("execution(* com.gurkan.dms.service.DocumentService.add(..))")
-    public void after (JoinPoint joinPoint) {
+    public void after(JoinPoint joinPoint) {
         Document document = (Document) joinPoint.getArgs()[0];
         log.info("aspect::after : " + document.getContent());
     }
 
     @AfterReturning("execution(* com.gurkan.dms.service.DocumentService.add(..))")
-    public void afterReturn (JoinPoint joinPoint) {
+    public void afterReturn(JoinPoint joinPoint) {
         Document document = (Document) joinPoint.getArgs()[0];
         log.info("aspect::afterReturn : " + document.getContent());
     }
 
     @AfterThrowing("execution(* com.gurkan.dms.service.DocumentService.add(..))")
-    public void afterThrow (JoinPoint joinPoint) {
+    public void afterThrow(JoinPoint joinPoint) {
         Document document = (Document) joinPoint.getArgs()[0];
         log.info("aspect::afterThrow : " + document.getContent());
     }

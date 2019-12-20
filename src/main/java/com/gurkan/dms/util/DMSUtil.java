@@ -7,13 +7,13 @@ import java.util.Base64;
 public class DMSUtil {
     private static final String DEFAULT_USER = "TEST";
 
-    private DMSUtil() {}
+    private DMSUtil() {
+    }
 
     /**
      * Sessiondaki kullanici bilgisini verir
      *
      * @param input decode halindeki yazi
-     *
      * @return String
      */
     public static String encodeBase64(String input) {
@@ -24,7 +24,6 @@ public class DMSUtil {
      * Sessiondaki kullanici bilgisini verir
      *
      * @param input encode halindeki yazi
-     *
      * @return String
      */
     public static String decodeBase64(String input) {
@@ -63,7 +62,6 @@ public class DMSUtil {
      *
      * @param startDate baslangic tarihi
      * @param endDate   bitis tarihi
-     *
      * @return Period
      */
     public static Period difference(LocalDate startDate, LocalDate endDate) {
@@ -75,7 +73,6 @@ public class DMSUtil {
      *
      * @param startTime baslangic zamani
      * @param endTime   bitis zamani
-     *
      * @return Duration
      */
     public static Duration difference(LocalTime startTime, LocalTime endTime) {
@@ -87,7 +84,6 @@ public class DMSUtil {
      *
      * @param date tarih
      * @param time zaman
-     *
      * @return LocalDateTime
      */
     public static LocalDateTime toDateTime(LocalDate date, LocalTime time) {
@@ -99,7 +95,6 @@ public class DMSUtil {
      *
      * @param date       tarih
      * @param chronoUnit birim
-     *
      * @return LocalDate
      */
     public static LocalDate nUnitLater(LocalDate date, int n, ChronoUnit chronoUnit) {
