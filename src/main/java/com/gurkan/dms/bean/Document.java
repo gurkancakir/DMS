@@ -19,6 +19,6 @@ public class Document extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "type_id", nullable = false)
     private DocumentType documentType;
-    
+
     List<Metadata> metadatas = new ArrayList<>();
 }

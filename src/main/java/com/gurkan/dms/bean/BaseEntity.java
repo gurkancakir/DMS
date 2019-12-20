@@ -16,18 +16,18 @@ public class BaseEntity {
     private String id;
     private String status;
 
-    @JsonFormat(pattern="yyyyMMdd", timezone = "Europe/Istanbul")
+    @JsonFormat(pattern = "yyyyMMdd", timezone = "Europe/Istanbul")
     private LocalDate createDate;
 
-    @JsonFormat(pattern="HHmmss", timezone = "Europe/Istanbul")
+    @JsonFormat(pattern = "HHmmss", timezone = "Europe/Istanbul")
     private LocalTime createTime;
 
     private String insertUser;
 
-    @JsonFormat(pattern="yyyyMMdd", timezone = "Europe/Istanbul")
+    @JsonFormat(pattern = "yyyyMMdd", timezone = "Europe/Istanbul")
     private LocalDate updateDate;
 
-    @JsonFormat(pattern="HHmmss", timezone = "Europe/Istanbul")
+    @JsonFormat(pattern = "HHmmss", timezone = "Europe/Istanbul")
     private LocalTime updateTime;
 
     private String updateUser;
